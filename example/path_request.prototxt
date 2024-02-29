@@ -1,0 +1,194 @@
+header {
+  seq: 3
+  stamp: 1706078032332102
+  original_stamp: 1706078032332102
+  valid: true
+  write_stamp: 1706078032332102
+}
+seq: 1
+parking_task {
+  park_mode: PARK_IN
+}
+path_plan_type: FIRST_PATH_PLAN
+parking_space {
+  slot_type: OBLIQUE
+  front_left {
+  }
+  front_right {
+    x: 3.2808463967279167
+  }
+  rear_left {
+    x: 2.9823381143159393
+    y: -5.6082905842415949
+  }
+  rear_right {
+    x: 6.2631845110438533
+    y: -5.608290584241594
+  }
+  length: 6.3519496145195049
+  width: 3.2808463967279167
+  heading: 2.0595381578581393
+  slot_angle: 2.0595381578581393
+}
+start_pose {
+  x: 0.69317981988666211
+  y: 1.8160198854807994
+  theta: 0.0387819609028535
+}
+target_pose {
+  x: 2.2198050651386287
+  y: -1.0895283309813468
+  theta: -1.082054495731654
+}
+obstacle_points {
+  x: 5.3861129245415773
+  y: 0.55032047228767245
+}
+obstacle_points {
+  x: 3.7679747852864383
+  y: -0.55322566398551243
+}
+obstacle_points {
+  x: 3.7679747852864383
+  y: -0.55322566398551243
+}
+obstacle_points {
+  x: 6.4845759252377162
+  y: -4.536598691364726
+}
+obstacle_points {
+  x: 6.4845759252377162
+  y: -4.536598691364726
+}
+obstacle_points {
+  x: 8.1027140644928544
+  y: -3.4330525550915407
+}
+obstacle_points {
+  x: 8.1027140644928544
+  y: -3.4330525550915407
+}
+obstacle_points {
+  x: 5.3861129245415773
+  y: 0.55032047228767245
+}
+obstacle_edges {
+  start_point {
+    x: 5.3861129245415773
+    y: 0.55032047228767245
+  }
+  end_point {
+    x: 3.7679747852864383
+    y: -0.55322566398551243
+  }
+}
+obstacle_edges {
+  start_point {
+    x: 3.7679747852864383
+    y: -0.55322566398551243
+  }
+  end_point {
+    x: 6.4845759252377162
+    y: -4.536598691364726
+  }
+}
+obstacle_edges {
+  start_point {
+    x: 6.4845759252377162
+    y: -4.536598691364726
+  }
+  end_point {
+    x: 8.1027140644928544
+    y: -3.4330525550915407
+  }
+}
+obstacle_edges {
+  start_point {
+    x: 8.1027140644928544
+    y: -3.4330525550915407
+  }
+  end_point {
+    x: 5.3861129245415773
+    y: 0.55032047228767245
+  }
+}
+t_shaped_area {
+  upper_line {
+    start_point {
+      x: -4.7957269117424648
+      y: 7.0000000000000009
+    }
+    end_point {
+      x: 12.767974785286437
+      y: 7
+    }
+  }
+  slot_left_edge {
+    start_point {
+      x: 0.20427308825753476
+      y: -1.3243864304485282
+    }
+    end_point {
+      x: 2.48233811431594
+      y: -5.6082905842415958
+    }
+  }
+  slot_right_edge {
+    start_point {
+      x: 3.7679747852864383
+      y: -0.55322566398551243
+    }
+    end_point {
+      x: 6.4561223688624567
+      y: -5.6082905842415949
+    }
+  }
+  slot_bottom_edge {
+    start_point {
+      x: 2.48233811431594
+      y: -5.6082905842415958
+    }
+    end_point {
+      x: 6.4561223688624567
+      y: -5.6082905842415958
+    }
+  }
+  road_left_edge {
+    start_point {
+      x: -4.7957269117424648
+      y: -1.3243864304485282
+    }
+    end_point {
+      x: 0.20427308825753476
+      y: -1.3243864304485282
+    }
+  }
+  road_right_edge {
+    start_point {
+      x: 12.767974785286437
+      y: -0.55322566398551243
+    }
+    end_point {
+      x: 3.7679747852864383
+      y: -0.55322566398551243
+    }
+  }
+  road_width: 6
+  c_point {
+    x: 3.6944990156778541
+    y: -0.50907944963722818
+  }
+}
+wall_line_start {
+  x: -2.0176618856840607
+  y: 6
+}
+wall_line_end {
+  x: 11.263184511043853
+  y: 6
+}
+obstacle_info {
+  left_side_free: true
+  upper_free: true
+}
+chassis_gear: GEAR_DRIVE

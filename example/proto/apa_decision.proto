@@ -1,0 +1,125 @@
+syntax = "proto3";
+package haomo.parking.planning;
+
+import "header.proto";
+import "common.proto";
+import "pnc_point.proto";
+import "car_info.proto";
+
+enum PathPlanType {
+  UNKNOWN_TYPE        = 0;
+  FIRST_PATH_PLAN     = 1;
+  NORMAL_REPLAN       = 2;
+  ROI_STATIC_REPLAN   = 3;
+  ROI_DYNAMIC_REPLAN  = 4;
+}
+
+message APAConstraint {
+  bool is_limit_gear                              = 1;
+  haomo.hios.GearBoxInfoPb.GearNum required_gear  = 2;
+}
+
+message ParkingTask {
+  enum ParkMode {
+    UNKNOWN_MODE      = 0;
+    PARK_IN           = 1;
+    PARK_OUT          = 2;
+  }
+
+  enum ParkInMethod {
+    UNKNOWN_METHOD    = 0;
+    HEAD              = 1;
+    TAIL              = 2;
+  }
+
+  enum ParkOutDirection {
+    UNKNOWN_DIR       = 0;
+    LEFT_FRONT        = 1;
+    STRAIGHT_FRONT    = 2;
+    RIGHT_FRONT       = 3;
+    LEFT_REAR         = 4;
+    STRAIGHT_REAR     = 5;
+    RIGHT_REAR        = 6;
+  }
+
+  ParkMode park_mode             = 1;
+  ParkInMethod park_in_method    = 2;
+  ParkOutDirection park_out_dir  = 3;
+  APAConstraint apa_constraint   = 4;
+}
+
+message LineSegment {
+  haomo.hios.Vec2d start_point  = 1;
+  haomo.hios.Vec2d end_point    = 2;
+}
+
+message Stopper {
+  haomo.hios.Vec2d left   = 1;
+  haomo.hios.Vec2d right  = 2;
+}
+
+message ParkingSpace {
+  enum SlotType {
+    UNKNOWN_TYPE  = 0;
+    VERTICAL      = 1;  // 垂直车位
+    PARALLEL      = 2;  // 水平车位
+    OBLIQUE       = 3;  // 斜列车位
+  }
+
+  SlotType slot_type            = 1;
+  haomo.hios.Vec2d front_left   = 2;
+  haomo.hios.Vec2d front_right  = 3;
+  haomo.hios.Vec2d rear_left    = 4;
+  haomo.hios.Vec2d rear_right   = 5;
+  double length                 = 6;
+  double width                  = 7;
+  double heading                = 8;
+  double slot_angle             = 9;
+
+  bool is_with_stopper          = 10;
+  Stopper stopper               = 11;
+}
+
+message TShapedArea {
+  LineSegment upper_line        = 1;
+  LineSegment slot_left_edge    = 2;
+  LineSegment slot_right_edge   = 3;
+  LineSegment slot_bottom_edge  = 4;
+  LineSegment road_left_edge    = 5;
+  LineSegment road_right_edge   = 6;
+  double road_width             = 7;
+  haomo.hios.Vec2d c_point      = 8;
+}
+
+message ObstacleAroundSlotInfo {
+  bool left_side_free              = 1;
+  bool right_side_free             = 2;
+  bool upper_free                  = 3;
+  bool vision_obstacle_invade      = 4;
+  bool uss_obstacle_invade         = 5;
+  string left_obstacle_line_type   = 6;
+  string right_obstacle_line_type  = 7;
+  string bottom_obstacle_line_type = 8;
+}
+
+message PathRequest {
+  haomo.hios.Header header                                         = 1;
+  uint32 seq                                                       = 2;
+  ParkingTask parking_task                                         = 3;
+  PathPlanType path_plan_type                                      = 4;
+  ParkingSpace parking_space                                       = 5;
+  haomo.hidelivery.planning.PathPoint start_pose                   = 6;
+  haomo.hidelivery.planning.PathPoint target_pose                  = 7;
+  repeated double target_area                                      = 8;
+  repeated haomo.hios.Vec2d obstacle_points                        = 9;
+  repeated LineSegment obstacle_edges                              = 10;
+  TShapedArea t_shaped_area                                        = 11;
+  haomo.hios.Vec2d wall_line_start                                 = 12 [deprecated=true];
+  haomo.hios.Vec2d wall_line_end                                   = 13 [deprecated=true];
+  double park_cdline_k                                             = 14 [deprecated=true];
+  double park_cdline_b                                             = 15 [deprecated=true];
+  ObstacleAroundSlotInfo obstacle_info                             = 16;
+  haomo.hios.GearBoxInfoPb.GearNum chassis_gear                    = 17;
+  bool is_candidate_valid                                          = 18;
+  repeated haomo.hidelivery.planning.PathPoint candidate_pose      = 19;
+}
